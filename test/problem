@@ -1,0 +1,192 @@
+css:
+1.使用css实现一个三角形。
+border , transform 旋转, 利用”◆“字符实现三角形 , Canvas和SVG
+2.让一个红色元素块消失有几种方式。
+display: none;visibility: hidden;opacity:0【透明度，取值为0-1】'rgba【存在于文档流，跟opacity的区别是rgba只应用于当前，不会被子元素继承】;z-index: -1
+3.css属性 -
+transform-origin 属性允许您改变被转换元素的位置。
+text-decoration-style 属性设置文本装饰的类型（实线、波浪线、点线、虚线、双线）。
+background-repeat 属性设置是否及如何重复背景图像。背景图像在水平和垂直方向上重复。
+repeat	默认。背景图像将在垂直方向和水平方向重复。
+repeat-x	背景图像将在水平方向重复。
+repeat-y	背景图像将在垂直方向重复。
+no-repeat	背景图像将仅显示一次。
+inherit	规定应该从父元素继承 background-repeat 属性的设置。
+animation-duration 属性定义动画完成一个周期所需要的时间，以秒或毫秒计。默认值是 0，意味着没有动画效果。
+
+js:
+1.ES6- 箭头函数 var,let,const ，字符串模板，class类继承关系,
+var name = 'window'; // 其实是window.name = 'window'
+
+var A = {
+   name: 'A',
+   sayHello: function(){
+      console.log(this.name)
+   }
+}
+
+A.sayHello();
+
+var B = {
+  name: 'B'
+}
+
+A.sayHello.call(B);
+
+A.sayHello.call();
+
+2.var和let const的区别
+
+1.1：let const声明的变量只在代码块作用域内有效，块作用域就是在大括号{}范围内有效；而var声明的变量在函数作用域或者全局作用域内有效，并没有块级作用域的概念。
+1.2 ：let和const声明的变量不存在变量提升，而var声明的变量存在变量提升。变量提升:就是在变量声明前可以访问变量，值为undefined。
+1.3：const声明的是一个常量，不可以更改，否则报错。const命令的本质是保证变量指向的内存地址不可以改变，对于简单类型（Number，String，Boolean）而言，变量的值就是栈区中保存的值；对于对象而言，变量的值是栈区中保存的一个指向堆区的指针
+
+3,字符串模板 - 用反引号(`)标识，它可以当作普通字符串使用，也可以用来定义多行字符串，或者在字符串中嵌入变量。
+
+4.class类继承关系 - class PrimaryStudent extends Student {
+    constructor(name, grade) {
+        super(name); // 记得用super调用父类的构造方法!
+        this.grade = grade;
+    }
+
+    myGrade() {
+        alert('I am at grade ' + this.grade);
+    }
+}
+2.typescript,webpack 插件 - ts to js.
+
+1.手写 promise.race , promise.all.
+https://blog.csdn.net/qq_40619263/article/details/106138916
+
+2.倒计时
+用结束时间减去现在时，获取时间差，再利用数学方法从时间差中分别获取日，时、分、秒等信息，最后通过定时器设置每秒执行一次，实现实时更新。
+var showtime = function () {
+    var nowtime = new Date(),  //获取当前时间
+        endtime = new Date("2020/8/8");  //定义结束时间
+    var lefttime = endtime.getTime() - nowtime.getTime(),  //距离结束时间的毫秒数
+        leftd = Math.floor(lefttime/(1000*60*60*24)),  //计算天数
+        lefth = Math.floor(lefttime/(1000*60*60)%24),  //计算小时数
+        leftm = Math.floor(lefttime/(1000*60)%60),  //计算分钟数
+        lefts = Math.floor(lefttime/1000%60);  //计算秒数
+    return leftd + "天" + lefth + ":" + leftm + ":" + lefts;  //返回倒计时的字符串
+}
+
+使用定时器设计每秒钟调用倒计时函数一次。
+var div = document.getElementById("showtime");
+setInterval (function () {
+    div.innerHTML = showtime();
+}, 1000);  //反复执行函数本身
+
+3.map,weakmap 区别
+WeakMap
+对象是一组键/值对的集合，其中的键是弱引用的。其键必须是对象Object 类型，而值可以是任意的。
+
+注意几点：
+
+键名必须是对象
+WeaMap对键名是弱引用的，键值是正常引用
+垃圾回收不考虑WeaMap的键名，不会改变引用计数器，键在其他地方不被引用时即删除
+因为WeakMap 是弱引用，由于其他地方操作成员可能会不存在，所以不可以进行forEach( )遍历等操作
+也是因为弱引用，WeaMap 结构没有keys( )，values( )，entries( )等方法和 size 属性
+当键的外部引用删除时，希望自动删除数据时使用 WeakMap
+出现Map是为了解决Object的键key必须是字符串问题，Map的键可以为Number，对象Object，数组Array，方法Function等。Map还有个优点是具有极快的查找速度。
+WeakMap本身是一种弱引用的Map，他仅支持键值为对象的情况，而且不可被枚举。既然有着键值必须为对象，且无法遍历等种种问题，那他存在的意义是什么呢？
+
+这涉及到js的垃圾回收机制，对于js而言，一个没有再继续被引用的变量的内存将会被回收，而被放入Map里的键值对，会一直被Map内部的两个数组引用，从而导致垃圾内存回收失败。而WeakMap是弱引用，即当键值对象在没有其他引用时，键值对象就可以被回收。
+
+框架:
+https://github.com/febobo/web-interview
+1.vue,react,angular,angularjs
+React构建组件的方式有哪些？区别？
+函数式创建
+通过 React.createClass 方法创建
+继承 React.Component 创建
+
+如何实现jwt鉴权机制 https://github.com/febobo/web-interview/issues/170
+
+说说Node中的EventEmitter? 如何实现一个EventEmitter https://github.com/febobo/web-interview/issues/166
+
+说下你的vue项目的目录结构，如果是大型项目你该怎么划分结构和划分组件呢？
+
+angular .js
+8、ng-if 跟 ng-show/hide的区别有哪些？
+ng-if 在后面表达式为 true 的时候才创建这个 dom 节点，ng-show 是初始时就创建了，用 display:block 和 display:none 来控制显示和不显示。
+ng-if 会（隐式地）产生新作用域，ng-switch 、 ng-include 等会动态创建一块界面的也是如此。
+9、ng-repeat迭代数组的时候，如果数组中有相同值，会有什么问题，如何解决？
+　　会提示 Duplicates in a repeater are not allowed. 加 track by $index 可解决。当然，也可以 trace by 任何一个普通的值，只要能唯一性标识数组中的每一项即可（建立 dom 和数据之间的关联）。
+
+ 10、AngularJS的数据双向绑定是怎么实现的？
+
+　　1、每个双向绑定的元素都有一个watcher
+　　2、在某些事件发生的时候，调用digest脏数据检测。
+　　　　这些事件有：表单元素内容变化、Ajax请求响应、点击按钮执行的函数等。
+　　3、脏数据检测会检测rootscope下所有被watcher的元素。
+　　　　$digest函数就是脏数据监测
+
+date：日期格式化
+
+　　currency：货币
+
+　　uppercase：大写
+
+　　lowercase：小写
+
+　　limitTo（限制数组或字符串长度）
+
+　　orderBy（排序）
+
+　　number（格式化数字，加上千位分隔符，并接收参数限定小数点位数）
+
+　　filter（处理一个数组，过滤出含有某个子串的元素）
+
+　　json（格式化 json 对象）
+
+angular2
+
+Angular 中有八个生命周期钩子
+
+ngOnChanges()
+ngOnInit()
+ngDoCheck()
+ngAfterContentInit()
+ngAfterContentChecked()
+ngAfterViewInit()
+ngAfterViewChecked()
+ngonDestroy()
+
+Angular 2 的主要组件是
+
+一个 TypeScript 类
+一个 Html 模板
+元数据。
+样式表
+组件
+模块
+服务
+
+代码块输出结果
+https://blog.csdn.net/An1090239782/article/details/117464919
+
+http:
+1.http 协议 https://github.com/lgwebdream/FE-Interview/blob/master/summarry/http.md
+2.跨域解决方案。
+以上就是9种常见的跨域解决方案，jsonp（只支持get请求，支持老的IE浏览器）适合加载不同域名的js、css，img等静态资源；CORS（支持所有类型的HTTP请求，但浏览器IE10以下不支持）适合做ajax各种跨域请求；Nginx代理跨域和nodejs中间件跨域原理都相似，都是搭建一个服务器，直接在服务器端请求HTTP接口，这适合前后端分离的前端项目调后端接口。document.domain+iframe适合主域名相同，子域名不同的跨域请求。postMessage、websocket都是HTML5新特性，兼容性不是很好，只适用于主流浏览器和IE10+。
+
+git.
+https://blog.csdn.net/halaoda/article/details/78661334
+git stash
+Workspace： 工作区，就是你平时存放项目代码的地方
+
+Index / Stage： 暂存区，用于临时存放你的改动，事实上它只是一个文件，保存即将提交到文件列表信息
+
+    Repository： 仓库区（或版本库），就是安全存放数据的位置，这里面有你提交到所有版本的数据。其中HEAD指向最新放入仓库的版本
+
+        Remote： 远程仓库，托管代码的服务器，可以简单的认为是你项目组中的一台电脑用于远程数据交换
+
+算法：
+1. 最长回文子串
+https://www.cxyxiaowu.com/2869.html
+
+逻辑思维：
+1. 有口井7米深，有个蜗牛从井底往上爬，白天爬3米，晚上往下坠2米，问蜗牛几天能从井里爬出来？
+

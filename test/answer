@@ -1,0 +1,24 @@
+1
+2
+4
+————————————————
+promise1
+1 Promise{<resolved>: resolve1}
+2 Promise{<pending>}
+resolve1
+————————————————
+1
+2
+4
+timerStart
+timerEnd
+success
+————————————————
+start
+promise1
+timer1
+promise2
+timer2
+————————————————
+then：success1
+————————————————
